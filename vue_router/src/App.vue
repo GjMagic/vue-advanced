@@ -3,7 +3,11 @@
     <div class="nav-box">
       <ul class="nav">
         <!-- 0.router-link默认绑定点击事件 -->
-        <router-link :to="index" tag="li" event="mouseenter">
+        <!-- 
+          14.'/'这种写法是根路径，别的路径会包含根路径，所以为了避免包含，在
+          router-link标签里加上exact 
+        -->
+        <router-link to="/" exact tag="li" event="mouseenter">
           <i class="fa fa-home"></i>
           <span>home</span>
         </router-link>
@@ -23,7 +27,7 @@
         </li>
         <!-- 3.在router实例中没有写mode时，跳转时不刷新页面，并且会自动加上#，不用手写 -->
         <li>
-          <router-link to="/about" event="mouseover">about</router-link>
+          <router-link :to="index" event="mouseover">about</router-link>
         </li>
       </ul>
     </div>
@@ -40,7 +44,7 @@ export default {
   name: 'app',
   data () {
     return {
-      index: '/home'
+      index: '/about'
     }
   }
 }

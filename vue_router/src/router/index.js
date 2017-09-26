@@ -6,6 +6,9 @@ import home from '@/components/home'
 import document from '@/components/document'
 import about from '@/components/about'
 import notFound from '@/components/notFound'
+import study from '../views/study.vue'
+import work from '../views/work.vue'
+import hobby from '../views/hobby.vue'
 
 let router = new Router({
     mode: 'history',
@@ -14,6 +17,11 @@ let router = new Router({
     */
     linkActiveClass: 'active', // 6.但是这个属性改变的是所有router-link标签激活时的class名
     routes: [{
+            path: '/', // 根路径
+            name: 'Home',
+            component: home
+        },
+        {
             path: '/home',
             name: 'Home',
             component: home,
@@ -26,8 +34,21 @@ let router = new Router({
         },
         {
             path: '/about',
-            name: 'About',
-            component: about
+            /* name: 'About', */ // 默认子路由父组件不能有name
+            component: about,
+            children: [{ // 14.chilfren是子路由属性
+                path: '', // 默认的子路由
+                name: 'About', // name可以写在子路由里
+                component: study
+            }, {
+                path: 'work',
+                name: 'Work',
+                component: work
+            }, {
+                path: 'hobby',
+                name: 'Hobby',
+                component: hobby
+            }]
         },
         /* {
             path: '*',
