@@ -1,7 +1,6 @@
 <template>
-  <div>
-    document
-    <p id="txt">定位到这个标签</p>
+  <div class="slider">
+    slider
   </div>
 </template>
 <script>
@@ -9,4 +8,3 @@ export default {
   
 }
 </script>
-

@@ -18,7 +18,7 @@
         <!-- 2.router-link 可以自动兼容history模式和hash模式 -->
         <li>
           <router-link 
-            :to="{path: '/document'}" 
+            :to="{path: '/document#txt'}" 
             active-class="activeClass"
             event="mouseover"  
           >
@@ -27,7 +27,19 @@
         </li>
         <!-- 3.在router实例中没有写mode时，跳转时不刷新页面，并且会自动加上#，不用手写 -->
         <li>
-          <router-link :to="index" event="mouseover">about</router-link>
+          <router-link 
+            :to="index" 
+            event="mouseover"
+          >
+            about
+        </router-link>
+        <li>
+          <router-link 
+            :to="{name: 'User'}" 
+            event="mouseover"
+          >
+            user
+        </router-link>
         </li>
       </ul>
     </div>
@@ -35,6 +47,10 @@
       9.如果想在每个子组件的根节点添加相同的class，就在router-view里添加class，
       这里添加的class会与子组件根节点的class合并
     -->
+    <!-- 17.命名视图：有时候想同时（同级）展示多个视图，而不是嵌套展示 -->
+    <router-view name="slider"></router-view>
+    <router-view name="slider"></router-view>
+
     <router-view class="center"></router-view>
   </div>
 </template>
