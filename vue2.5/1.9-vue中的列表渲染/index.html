@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Vue中的列表渲染、set方法</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- template是一个占位符，在真实dom中不显示 -->
+    <!-- <template
+      v-for="item of list"
+    >
+      <div>{{item.text}}</div>
+      <span>{{item.text}}</span>
+    </template> -->
+    <div v-for="(item, key, index) of userInfo">
+      {{item}}---{{key}}---{{index}}
+    </div>
+    <!-- 
+      改变对象同时响应dom还有一种方式就是：
+        Vue.set(vm.userInfo, 'address'(key), 'beijing'(value)) === 全局更改
+        vm.$set(vm.userInfo, 'address'(key), 'beijing'(value)) === 在实例上更改
+    -->
+
+    <!-- 
+      改变数组同时响应dom还有一种方式就是：
+        Vue.set(vm.userlist, 1, 5) === 全局更改
+        vm.$set(vm.userlist, 2, 10) === 在实例上更改
+    -->
+    <div v-for="(item) of userlist">
+      {{item}}
+    </div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        list: [
+          {
+            id: '1123',
+            text: 'hello'
+          },
+          {
+            id: '2234',
+            text: 'Gong'
+          },
+          {
+            id: '3123',
+            text: 'Yu'
+          },
+        ],
+        userInfo: {
+          name: 'Gong',
+          age: 24,
+          gender: 'male',
+          selary: 'secret'
+        },
+        userlist: [1, 2, 3, 4]
+      },
+    })
+  </script>
+</body>
+</html>
