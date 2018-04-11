@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>组件中使用的细节</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <table>
+      <tbody>
+        <!-- 1、当一个标签下必须是某一标签时，子组件可以是is的形式来表示 -->
+        <tr is="row"></tr> 
+        <tr is="row"></tr>
+        <tr is="row"></tr>
+      </tbody>
+    </table>
+    <counter ref="countOne" @add="handleChange"></counter> <!-- 在父组件订阅这个事件 -->
+    <counter ref="countTwo" @add="handleChange"></counter>
+    <div>{{total}}</div>
+  </div>
+  <script>
+    Vue.component('row', {
+      // 2、子组件data必须是一个函数返回一个对象的形式
+      data: function() {
+        return {
+          content: 'this is a row'
+        }
+      },
+      template: '<tr><td>{{content}}</td></tr>'
+    })
+
+    // 3、ref的使用,(1)、如果ref在一个dom上就是一个dom节点.(2)、如果ref在子组件上就是这个子组件的引用
+    Vue.component('counter', {
+      data: function() {
+        return {
+          number: 0
+        }
+      },
+      template: '<div @click="handleAdd">{{number}}</div>', // @click应该写在子组件内部
+      methods: {
+        handleAdd: function() {
+          this.number ++;
+          this.$emit('add'); // 发布一个事件监听,事件名最好不要用驼峰
+        }
+      }
+    })
+
+    var vue = new Vue({
+      el: '#app',
+      data: {
+        total: 0
+      },
+      methods: {
+        handleChange: function() {
+          console.log(this.$refs.countOne)
+          this.total = this.$refs.countOne.number + this.$refs.countTwo.number;
+        }
+      }
+    })
+  </script>
+</body>
+</html>
