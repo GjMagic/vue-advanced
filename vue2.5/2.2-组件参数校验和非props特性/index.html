@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>组件参数校验和非props特性</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 非props特性就是在子组件标签上写一个属性但并不接收，属性会显示在子组件dom节点上 -->
+    <child content="hello world"></child>
+  </div>
+  <script>
+
+    Vue.component('child', {
+      /* 1、组件参数校验---数组形式 */
+      /* props: ['content'], */
+      /* 2、组件参数校验---props是对象形式 */
+      /* props: {
+        content: String
+      }, */
+      /* 3、组件参数校验---props和属性是对象形式 */
+      props: {
+        content: {
+          /* type: String,  可以是单个*/
+          type: [String, Number],
+          required: false,
+          default: 'default value',
+          validator: function(val) {
+            return val.length > 5;
+          }
+        }
+      },
+      template: '<div>{{content}}</div>'
+    })
+
+    var vue = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+</html>

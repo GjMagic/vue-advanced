@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>父子组件的数据传递</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 如果在行间不带冒号直接写，那么双引号里的是字符串；如果带冒号写，双引号里面的是数字类型 -->
+    <counter :count="2" @add="handleIncrease"></counter>
+    <counter :count="3" @add="handleIncrease"></counter>
+    <div>{{total}}</div>
+  </div>
+  <script>
+
+    var counter = {
+      props: ['count'],
+      data: function() {
+        return {
+          number: this.count
+        }
+      },
+      template: '<div @click="handleAdd">{{number}}</div>',
+      methods: {
+        handleAdd: function() {
+          this.number += 2;
+          this.$emit('add', 2);
+        }
+      }
+    }
+
+    var vue = new Vue({
+      el: '#app',
+      data: {
+        total: 5
+      },
+      components: {
+        counter
+      },
+      methods: {
+        handleIncrease: function(val) {
+          this.total += val; 
+        }
+      }
+    })
+  </script>
+</body>
+</html>
