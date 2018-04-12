@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Vue中的插槽(slot)、作用域插槽</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <body-content>
+      <h2 class="header" slot="header">header</h2> <!-- 具名插槽 -->
+      <!-- <h3 class="footer" slot="footer">footer</h3> -->
+    </body-content>
+
+    <child>
+      <!-- 作用域插槽必须是template开头和结尾的形式,并且必须携带slot-scope属性 -->
+      <template slot-scope="props">
+        <li>{{props.item}}</li> 
+      </template>
+    </child>
+  </div>
+  <script>
+
+    Vue.component('child', {
+      data: function() {
+        return {
+          list: [1, 2, 3, 4]
+        }
+      },
+      template: `
+        <ul>
+          <slot 
+            v-for="item of list"
+            :item="item"
+          ></slot>
+        </ul>
+      `
+    })
+
+    Vue.component('body-content', {
+      template: `
+        <div>
+          <slot name="header">default header</slot>
+          <div>hello</div>  
+          <slot name="footer">
+            <h3>default footer</h3>  
+          </slot>
+        </div>
+      `
+    })
+
+    var vue = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+</html>

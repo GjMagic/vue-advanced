@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>动态组件与v-once指令</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- <component :is="type"></component> --> <!-- 动态组件 -->
+    <child-one v-if="type === 'child-one'">child-one</child-one>
+    <child-two v-if="type === 'child-two'">child-two</child-two>
+    <button @click="handleBtnClick">change</button>
+  </div>
+  <script>
+
+    Vue.component('child-one', {
+      template: '<div v-once>child-one</div>' // v-once的作用是第一次出现后把它放在内存中，提高性能。
+    })
+
+    Vue.component('child-two', {
+      template: '<div v-once>child-two</div>'
+    })
+
+    var vue = new Vue({
+      el: '#app',
+      data: {
+        type: 'child-one' // 通过换组件形式来换内容
+      },
+      methods: {
+        handleBtnClick: function() {
+          this.type = this.type === 'child-one' ? 'child-two' : 'child-one';
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>非父子组件间传值(bus/总线/订阅发布模式/观察者模式)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <child content="Gong"></child>
+    <child content="Yu"></child>
+  </div>
+  <script>
+
+    Vue.prototype.bus = new Vue();
+
+    Vue.component('child', {
+      data: function() {
+        return {
+          childCon: this.content
+        }
+      },
+      props: ['content'],
+      template: '<div @click="handleClick">{{childCon}}</div>',
+      methods: {
+        handleClick: function() {
+          this.bus.$emit('change', this.childCon); // 发布一个事件
+        }
+      },
+      mounted: function() {
+        this.bus.$on('change', (val) => { // 两个组件都监听了这个事件所以弹两次
+          // alert(val)
+          this.childCon = val; // 触发两次，第一个子组件不变，第二个子组件变为传过来的val
+        })
+      }
+    })
+
+    var vue = new Vue({
+      el: '#app',
+    })
+  </script>
+</body>
+</html>
