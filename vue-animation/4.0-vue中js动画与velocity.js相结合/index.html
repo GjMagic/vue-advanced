@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Vue中js动画与velocity.js相结合</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../vue.js"></script>
+  <script src="../velocity.js"></script>
+</head>
+<body>
+  <div id="app">
+    <transition 
+      name="fade"
+      // 动画钩子函数(6个)
+      @before-enter="handleBrforeEnter" 
+      @enter="handleEnter" 
+      @after-enter="handleAfterEnter"
+      @before-leave="handleBeforeLeave" 
+      @leave="handleLeave" 
+      @after-leave="handleAfterLeave" 
+    >
+      <div v-show="show">hello world</div>
+    </transition>
+    <button @click="handleClick">切换</button>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        show: true
+      },
+      methods: {
+        handleClick: function() { 
+          this.show = !this.show;
+        },
+        handleBrforeEnter: function(el) { // el就是transition下的元素
+          el.style.opacity = 0;
+        },
+        handleEnter: function(el, done) {
+          Velocity(el, {
+            opacity: 1
+          }, {
+            duration: 1000,
+            complete: done // done的作用告诉Vue, 动画结束了。
+          })
+        },
+        handleAfterEnter: function(el) {
+          console.log('动画结束');
+        },
+        handleBeforeLeave: function(el) {
+          el.style.opacity = 1;
+        },
+        handleLeave: function(el, done) {
+          Velocity(el, {
+            opacity: 0
+          }, {
+            duration: 1500,
+            complete: done
+          })
+        },
+        handleAfterLeave: function(el) {
+          console.log('动画结束')
+        }
+      }
+    })
+  </script>
+</body>
+</html>
