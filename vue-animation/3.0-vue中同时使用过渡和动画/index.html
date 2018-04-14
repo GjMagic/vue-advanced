@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Vue中同时使用过渡和动画</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../animate.css">
+  <script src="../vue.js"></script>
+  <style>
+    .fade-enter,
+    .fade-leave-to {
+      opacity: 0;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: opacity 3s;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- 
+      1、appear代表刷新时出现动画 
+      2、enter-active-class自定义入场动画class
+      3、leave-active-class自定义出场动画class
+      4、:duration自定义动画时长
+    -->
+    <transition 
+      name="fade"
+      :duration="{enter: 1000, leave: 3000}"
+      appear
+      enter-active-class="animated swing fade-enter-active" 
+      leave-active-class="animated rubberBand fade-leave-active"
+      appear-active-class="animated swing"
+    >
+      <div v-show="show">hello world</div>
+    </transition>
+    <button @click="handleClick">切换</button>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        show: true
+      },
+      methods: {
+        handleClick: function() { 
+          this.show = !this.show;
+        }
+      }
+    })
+  </script>
+</body>
+</html>
