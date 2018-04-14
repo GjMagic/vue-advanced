@@ -8,3 +8,6 @@
 
 ### 2、vue_router
 > 之前对于vue路由的学习
+
+### 3、vue-animation
+> vue动画
