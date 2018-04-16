@@ -1,0 +1,42 @@
+body *{
+	box-sizing: border-box;
+}
+
+body {
+  font-size: .373333rem !important;
+}
+
+/*清楚浮动*/
+.clearfix::after {
+  display: block;
+  overflow: hidden;
+  clear: both;
+  height: 0;
+  content: '';
+}
+
+.clearfix::after {
+	zoom: 1;	
+}
+
+/* 改变placeholder */
+/* input::-webkit-input-placeholder, 
+textarea::-webkit-input-placeholder {
+  color: #e0e0e0;
+}
+
+input:-moz-placeholder, 
+textarea:-moz-placeholder {
+　color:#e0e0e0;
+}
+
+input::-moz-placeholder, 
+textarea::-moz-placeholder {
+  color:#e0e0e0;
+}
+
+input:-ms-input-placeholder, 
+textarea:-ms-input-placeholder {
+　color:#e0e0e0;
+} */
+
