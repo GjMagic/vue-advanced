@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header-left">
-      <div class="iconfont back-icon">&#xe6b0;</div>
+      <div class="iconfont back-icon">&#xe610;</div>
     </div>
     <div class="header-input">
       <span class="iconfont search-icon">&#xe634;</span>      
