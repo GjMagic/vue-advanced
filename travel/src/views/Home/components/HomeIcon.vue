@@ -54,7 +54,7 @@ export default {
       }, {
         id: '0009',
         imgUrl: 'http://img1.qunarzz.com/piao/fusion/1803/e3/67df61427c8e1302.png',
-        imgText: '定制游'
+        imgText: '演出'
       }]
     }
   },
