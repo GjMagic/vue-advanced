@@ -61,11 +61,12 @@ export default {
   .item-info
     padding: .1rem
     .item-title
-      line-height: .54rem
-      font-size: .32rem
+      line-height: .8rem
+      font-size: .4rem
       ellipsis()
     .item-desc
       line-height: .4rem
-      color: #ccc
+      font-size .266667rem
+      margin-bottom .133333rem
       ellipsis()
 </style>
