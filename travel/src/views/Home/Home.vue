@@ -46,7 +46,7 @@ export default {
           city, swiperList, iconList, 
           recommendList, weekendList 
         } = res.data;
-        
+
         this.city = city;
         this.swiperList = swiperList;
         this.iconList = iconList;

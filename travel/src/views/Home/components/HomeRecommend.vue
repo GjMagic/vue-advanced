@@ -37,7 +37,8 @@ export default {
   .item
     overflow: hidden
     display: flex
-    height: 1.9rem
+    height: 2.0rem
+    padding-top .133333rem
     .item-img
       width: 1.7rem
       height: 1.7rem
@@ -47,18 +48,19 @@ export default {
       padding: .1rem
       min-width: 0
       .item-title
-        line-height: .54rem
-        font-size: .32rem
+        height .5rem
+        font-size: .373333rem
         ellipsis()
       .item-desc
         line-height: .4rem
+        font-size .32rem
         color: #ccc
         ellipsis()
       .item-button
         line-height: .44rem
-        margin-top: .16rem
         background: #ff9300
-        padding: 0 .2rem
+        margin-top .08rem
+        padding: .05rem .2rem
         border-radius: .06rem
         color: #fff
 </style>
