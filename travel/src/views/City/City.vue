@@ -34,7 +34,6 @@ export default {
       .then(this.getCityInfoSucc)
     },
     getCityInfoSucc(res) {
-      console.log(res)
       res = res.data;
       if(res.ret && res.data) {
         let { hotCities, cities } = res.data

@@ -43,7 +43,7 @@ export default {
       flex 1
       height .853333rem
       background-color #ffffff
-      margin-top .133333rem
+      margin-top .146667rem
       margin-left .266667rem
       border-radius .133333rem
       color #cccccc
