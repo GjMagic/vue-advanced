@@ -9,7 +9,7 @@
     </div>
     <router-link to="/city">
       <div class="header-right">
-        {{city}}
+        {{this.currentCity}}
         <span class="iconfont arrow-icon">&#xe62b;</span>
       </div>
     </router-link>
@@ -17,16 +17,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'HomeHeader',
-  props: {
-    city: String
+  computed: {
+    ...mapState({ // 也可以放对象
+      currentCity: 'city'
+    })
   }
 }
 </script>
 
 <style lang="stylus" scoped>
   @import '~styles/varibles.styl'; // 在style中引入其他的css需要在前边加~
+  @import '~styles/mixins.styl'; 
   .header
     height $HeaderHight
     background-color $bgColor
@@ -52,10 +56,12 @@ export default {
       .search-icon
         font-size .373333rem
     .header-right
-      width 1.653333rem
+      min-width  1.386667rem
+      padding 0 .133333rem
       float right
       text-align center
       color #ffffff
+      ellipsis()
       .arrow-icon
         font-size .32rem
 </style>
