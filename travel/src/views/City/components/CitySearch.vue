@@ -7,13 +7,21 @@
         v-model="value"
       />
     </div>
-    <div class="search-content" ref="wrapper">
+    <div 
+      class="search-content" 
+      ref="wrapper"
+      v-show="value"
+    >
       <ul>
         <li 
           v-for="item of cityList"
           :key="item.id"
           class="search-item border-bottom"
         >{{item.name}}</li>
+        <li 
+          class="search-item border-bottom"
+          v-show="hasNoData"
+        >没有找到匹配项</li>
       </ul>
     </div>
   </div>
@@ -33,11 +41,23 @@ export default {
       timer: null
     }
   },
+  computed: {
+    hasNoData () {
+      return !this.cityList.length;
+    }
+  },
   watch: {
     value () {
+
       if (this.timer) {
         clearTimeout(this.timer);
       }
+
+      if (!this.value) {
+        this.cityList = [];
+        return;
+      }
+
       this.timer = setTimeout(() => {
         const list = [];
         for (const i in this.cities) {
@@ -81,7 +101,7 @@ export default {
     left 0
     right 0
     bottom 0
-    background red
+    background #eeeeee
     z-index 999
     .search-item
       line-height .826667rem
