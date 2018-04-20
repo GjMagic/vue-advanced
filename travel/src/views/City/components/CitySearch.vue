@@ -1,12 +1,62 @@
 <template>
-  <div class="search">
-    <input class="search-input" placeholder="请输入城市名或拼音" />
+  <div>
+    <div class="search">
+      <input 
+        class="search-input" 
+        placeholder="请输入城市名或拼音" 
+        v-model="value"
+      />
+    </div>
+    <div class="search-content" ref="wrapper">
+      <ul>
+        <li 
+          v-for="item of cityList"
+          :key="item.id"
+          class="search-item border-bottom"
+        >{{item.name}}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
+import Bscroll from 'better-scroll'
 export default {
-  name: 'CitySearch'
+  name: 'CitySearch',
+  props: {
+    cities: Object
+  },
+  data () {
+    return {
+      cityList: [],
+      value: '',
+      timer: null
+    }
+  },
+  watch: {
+    value () {
+      if (this.timer) {
+        clearTimeout(this.timer);
+      }
+      this.timer = setTimeout(() => {
+        const list = [];
+        for (const i in this.cities) {
+          if (this.cities.hasOwnProperty(i)) {
+            const element = this.cities[i];
+            element.forEach(item => {
+              if (item.spell.indexOf(this.value) > -1 || item.name.indexOf(this.value) > -1) {
+                list.push(item);
+              }
+            });
+          }
+        }
+        this.cityList = list;
+      }, 100)
+    }
+  },
+  mounted () {
+    this.scroll = new Bscroll(this.$refs.wrapper);
+  }
 }
 </script>
 
@@ -24,4 +74,18 @@ export default {
       text-align center 
       border-radius .08rem
       color #666666
+  .search-content
+    overflow hidden
+    position absolute
+    top 2.106667rem
+    left 0
+    right 0
+    bottom 0
+    background red
+    z-index 999
+    .search-item
+      line-height .826667rem
+      padding-left .266667rem
+      background #ffffff
+      color #666
 </style>

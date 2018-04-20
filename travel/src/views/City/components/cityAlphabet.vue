@@ -18,11 +18,16 @@ export default {
   name: 'cityAlphabet',
   data () {
     return {
-      touchStart: false
+      touchStart: false,
+      startY: 0,
+      timer: null
     }
   },
   props: {
     cities: Object
+  },
+  updated () {
+    this.startY = this.$refs['A'][0].offsetTop; // 在组件更新时拿一次即可
   },
   computed: {
     alphabetList () {
@@ -44,12 +49,17 @@ export default {
     },
     handleTouchMove (e) {
       if (this.touchStart) {
-        const startY = this.$refs['A'][0].offsetTop;
-        const touchY = e.touches[0].clientY;
-        let index = Math.floor((touchY - startY - 79) / 20);
-        if (index >= 0 && index < this.alphabetList.length) { // 防止出界了也进行计算
-          this.$emit('alphabetChange', this.alphabetList[index]);
+        // 函数节流，提高性能
+        if (this.timer) {
+          clearTimeout(this.timer);
         }
+        this.timer = setTimeout(() => {
+          const touchY = e.touches[0].clientY;
+          let index = Math.floor((touchY - this.startY - 79) / 20);
+          if (index >= 0 && index < this.alphabetList.length) { // 防止出界了也进行计算
+            this.$emit('alphabetChange', this.alphabetList[index]);
+          }
+        }, 16)
       }
     },
     handleTouchEnd () {
