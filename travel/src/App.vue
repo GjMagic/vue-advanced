@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view/>
+    <keep-alive> <!-- 放在缓存中，避免每次都请求一次接口 -->
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 
