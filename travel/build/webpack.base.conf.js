@@ -28,7 +28,8 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       // 更改webpack时需要重启yarn run dev
-      'styles': resolve('src/assets/styles')
+      'styles': resolve('src/assets/styles'),
+      'common': resolve('src/common'),
     }
   },
   module: {
