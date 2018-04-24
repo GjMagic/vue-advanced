@@ -4,7 +4,7 @@
       <swiper :options="swiperOption">
         <!-- slides -->
         <swiper-slide 
-          v-for="(item, index) of images"
+          v-for="(item, index) of gallaryImgs"
           :key="index"
         >
           <img 
@@ -23,7 +23,7 @@
 export default {
   name: 'Gallery',
   props: {
-    images: {
+    gallaryImgs: {
       type: Array,
       default () {
         return []

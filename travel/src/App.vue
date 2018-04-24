@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <keep-alive> <!-- 放在缓存中，避免每次都请求一次接口 -->
+    <!-- 
+      1、放在缓存中，避免每次都请求一次接口 
+      2、exclude是除了Detail组件其它的都放缓存里
+    -->
+    <keep-alive exclude="Detail"> 
       <router-view />
     </keep-alive>
   </div>
