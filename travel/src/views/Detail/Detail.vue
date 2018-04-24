@@ -57,7 +57,7 @@ export default {
       }
     }
   },
-  mounted () { // keep-alive对组件做了缓存导致mouted只触发一次
+  activated () { // keep-alive对组件做了缓存导致mouted只触发一次, 但每次进来会触发activated
     this.getDetailInfo();
   },
 }
