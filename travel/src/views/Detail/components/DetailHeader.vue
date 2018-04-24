@@ -35,7 +35,7 @@ export default {
   methods: {
     handleScroll () {
       let top = document.documentElement.scrollTop;
-      if (top > 60) {
+      if (top > 0) {
         let opacity = top / 140;
         opacity = opacity > 1 ? 1 : opacity;
         this.activeStyle = {
@@ -72,6 +72,7 @@ export default {
       color #ffffff
       font-size .533333rem
   .header-fixed
+    z-index 2 
     position fixed
     left 0
     top 0

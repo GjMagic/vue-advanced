@@ -3,7 +3,7 @@
     <div class="banner" @click="handleGalleryClick">
       <img 
         class="banner-img"
-        src="//img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_600x330_f922b488.jpg" 
+        src="http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_600x330_f922b488.jpg" 
       />
       <div class="banner-info">
         <div class="banner-title">
