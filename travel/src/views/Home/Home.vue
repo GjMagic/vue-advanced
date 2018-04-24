@@ -10,7 +10,7 @@
 
 <script>
 import axios from 'axios';
-import HomeHeader from './components/HomeHeader';
+/* import HomeHeader from './components/HomeHeader'; */
 import HomeSwiper from './components/HomeSwiper';
 import HomeIcon from './components/HomeIcon';
 import HomeRecommend from './components/HomeRecommend';
@@ -19,7 +19,7 @@ import { mapState } from "vuex";
 export default {
   name: 'Home',
   components: {
-    HomeHeader,
+    HomeHeader: () => import('./components/HomeHeader'), // 组件内也可以拆分异步组件(项目不大不要使用异步组件，避免多发请求)
     HomeSwiper,
     HomeIcon,
     HomeRecommend,
