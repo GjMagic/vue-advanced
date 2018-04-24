@@ -15,16 +15,19 @@
         </div>
       </div>
     </div>
-    <gallery
-      :gallaryImgs="gallaryImgs"
-      v-show="showGallery"
-      @close="closeGallery"
-    ></gallery>
+    <fade-animation>
+      <gallery
+        :gallaryImgs="gallaryImgs"
+        v-show="showGallery"
+        @close="closeGallery"
+      ></gallery>
+    </fade-animation>
   </div>
 </template>
 
 <script>
 import Gallery from 'common/Gallery/Gallery'
+import FadeAnimation from 'common/FadeAnimation/FadeAnimation'
 export default {
   name: 'DetailBanner',
   props: {
@@ -38,7 +41,8 @@ export default {
     }
   },
   components: {
-    Gallery
+    Gallery,
+    FadeAnimation
   },
   methods: {
     handleGalleryClick () {
