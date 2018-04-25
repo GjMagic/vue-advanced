@@ -43,7 +43,6 @@ export default {
       .then(this.handleInfoSucc)
     },
     handleInfoSucc (res) {
-      console.log(res)
       res = res.data;
       if (res.ret && res.data) {
         let { 
@@ -57,7 +56,7 @@ export default {
       }
     }
   },
-  activated () { // keep-alive对组件做了缓存导致mouted只触发一次, 但每次进来会触发activated
+  mounted () { // keep-alive对组件做了缓存导致mouted只触发一次, 但每次进来会触发activated
     this.getDetailInfo();
   },
 }

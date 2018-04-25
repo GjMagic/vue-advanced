@@ -47,10 +47,10 @@ export default {
       }
     }
   },
-  activated () {
+  created () {
     window.addEventListener('scroll', this.handleScroll)
   },
-  deactivated () { // 解绑全局事件
+  destroyed () { // 解绑全局事件
     window.removeEventListener('scroll', this.handleScroll)
   }
 }
