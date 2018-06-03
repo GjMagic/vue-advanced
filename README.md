@@ -14,3 +14,6 @@
 
 ### 4、travel
 > vue去哪儿网web app
+
+### 5、vue-music
+> vue音乐播放器web app
